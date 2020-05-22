@@ -1,0 +1,32 @@
+# Please refer https://docs.docker.com/compose to learn more about Docker Compose.
+
+# This is a sample docker-compose file with two services
+# 1. yourwebapp is an sample web service where the docker container image will be built from the Dockerfile as
+#    part of starting the compose.
+# 2. redis is an existing image hosted in docker hub.
+version: "3.4"
+
+services:
+  # yourwebapp:
+  #   image: yourwebapp
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #       - 80
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: loja1402
+    ports:
+      - 3306:3306
+  application:
+    image: application
+    build:
+      context: .
+      dockerfile: src/Api.Application/Dockerfile
+    ports:
+      - 5000
