@@ -15,8 +15,12 @@ namespace CrossCutting.DependencyInjection
         {
             servicesCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
+            //servicesCollection.AddDbContext<MyContext>(
+            //    opt => opt.UseMySql("Server=192.168.0.102;Port=3306;Database=dbAPI;Uid=root;Pwd=loja1402")
+            //);
+
             servicesCollection.AddDbContext<MyContext>(
-                opt => opt.UseMySql("Server=192.168.0.102;Port=3306;Database=dbAPI;Uid=root;Pwd=loja1402")
+                opt => opt.UseSqlServer("Server=192.168.0.102;Database=dbAPI;User Id=sa;Password=loja1402!")
             );
         }
     }
